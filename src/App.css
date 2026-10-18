@@ -1070,3 +1070,198 @@ label {
     padding: 25px 18px;
   }
 }
+
+/* HERO SECTION FIX */
+.hero-section {
+  min-height: 500px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 35px;
+  padding: 50px 7%;
+}
+
+.hero-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.hero-content h1 {
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.hero-content > p {
+  max-width: 490px;
+}
+
+.hero-art {
+  width: 100%;
+  min-width: 0;
+  min-height: 350px;
+}
+
+.hero-art-main {
+  width: min(100%, 350px);
+  height: 300px;
+}
+
+.hero-art-main > span {
+  font-size: 150px;
+}
+
+.hero-art-caption {
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  padding: 13px;
+}
+
+.floating-note {
+  max-width: 220px;
+  z-index: 3;
+}
+
+.note-top {
+  top: 15px;
+  right: 0;
+}
+
+.note-bottom {
+  bottom: 0;
+  left: 0;
+}
+
+/* TABLET */
+@media (max-width: 1050px) {
+  .hero-section {
+    gap: 25px;
+    padding: 45px 5%;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(34px, 4vw, 46px);
+  }
+
+  .hero-art-main {
+    width: min(100%, 320px);
+  }
+
+  .note-top {
+    right: 0;
+  }
+
+  .note-bottom {
+    left: 0;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 760px) {
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+    min-height: auto;
+    padding: 45px 7% 55px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(36px, 8vw, 48px);
+  }
+
+  .hero-art {
+    min-height: 320px;
+    margin: 0 auto;
+    max-width: 480px;
+  }
+
+  .hero-art-main {
+    width: min(80%, 320px);
+    height: 270px;
+  }
+
+  .hero-art-main > span {
+    font-size: 130px;
+  }
+
+  .note-top {
+    top: 5px;
+    right: 0;
+  }
+
+  .note-bottom {
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-art {
+    min-height: 290px;
+  }
+
+  .hero-art-main {
+    width: 78%;
+    height: 245px;
+  }
+
+  .floating-note {
+    max-width: 175px;
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .note-bottom {
+    bottom: 0;
+    left: -3px;
+  }
+}
+
+/* FINAL HERO ART ADJUSTMENT */
+.hero-art {
+  min-height: 330px;
+  padding: 15px 25px;
+}
+
+.hero-art-main {
+  width: min(100%, 350px);
+  height: 295px;
+  margin: 0 auto;
+}
+
+.note-top {
+  top: 10px;
+  right: -5px;
+}
+
+.note-bottom {
+  bottom: -5px;
+  left: -5px;
+  z-index: 4;
+}
+
+/* Give the hero more balanced proportions */
+.hero-section {
+  min-height: 485px;
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
+/* Keep the artwork readable on smaller screens */
+@media (max-width: 760px) {
+  .hero-art {
+    min-height: 310px;
+    padding: 10px 20px;
+  }
+
+  .hero-art-main {
+    height: 265px;
+  }
+
+  .note-top {
+    right: -5px;
+  }
+
+  .note-bottom {
+    left: -5px;
+  }
+}

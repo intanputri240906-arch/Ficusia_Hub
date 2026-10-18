@@ -1,265 +1,222 @@
 
+import React from "react";
+
 export default function Home({ navigate }) {
+  const goTo = (page) => {
+    if (navigate) navigate(page);
+  };
+
   return (
-    <div className="home-page">
-
-      {/* Hero Section */}
-      <section className="home-hero">
-        <div className="hero-content">
-
-          <div className="eyebrow">
-            <span className="hero-dot"></span>
-            THE CREATIVE COMMUNITY
+    <div
+      style={{
+        minHeight: "100vh",
+        fontFamily: "Arial, sans-serif",
+        color: "#203b2c",
+        background: "#ffffff",
+      }}
+    >
+      <nav
+        style={{
+          height: "80px",
+          padding: "0 6%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "20px",
+          flexWrap: "wrap",
+          borderBottom: "1px solid #e5eae5",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div
+            style={{
+              background: "#285d43",
+              color: "white",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              fontWeight: "bold",
+              fontSize: "22px",
+            }}
+          >
+            F
           </div>
+          <strong style={{ fontSize: "19px", letterSpacing: "1px" }}>
+            FICUSIA HUB
+          </strong>
+        </div>
 
-          <h1>
-            Your imagination.
+        <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
+          <span style={{ fontWeight: "bold" }}>Home</span>
+          <span
+            onClick={() => goTo("artworks")}
+            style={{ cursor: "pointer" }}
+          >
+            Discover Art
+          </span>
+          <span
+            onClick={() => goTo("creators")}
+            style={{ cursor: "pointer" }}
+          >
+            Creators
+          </span>
+          <span onClick={() => goTo("jobs")} style={{ cursor: "pointer" }}>
+            Career
+          </span>
+        </div>
+
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button
+            onClick={() => goTo("login")}
+            style={buttonStyle("#ffffff", "#285d43", "#d6e1d8")}
+          >
+            Log In
+          </button>
+          <button
+            onClick={() => goTo("register")}
+            style={buttonStyle("#285d43", "#ffffff", "#285d43")}
+          >
+            Join the Hub ↗
+          </button>
+        </div>
+      </nav>
+
+      <section
+        style={{
+          minHeight: "500px",
+          padding: "60px 7%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "50px",
+          flexWrap: "wrap",
+          background: "linear-gradient(120deg, #204e39, #67936b)",
+          color: "white",
+          boxSizing: "border-box",
+        }}
+      >
+        <div style={{ flex: "1 1 420px", maxWidth: "650px" }}>
+          <p
+            style={{
+              letterSpacing: "2px",
+              fontWeight: "bold",
+              fontSize: "12px",
+              color: "#dceba7",
+            }}
+          >
+            THE CREATIVE COMMUNITY
+          </p>
+
+          <h1
+            style={{
+              fontSize: "clamp(36px, 5vw, 56px)",
+              lineHeight: "1.12",
+              margin: "20px 0",
+            }}
+          >
+            Your creativity.
             <br />
-            <span>Your next opportunity.</span>
+            <span style={{ color: "#dceba7" }}>
+              Your next opportunity.
+            </span>
           </h1>
 
-          <p className="hero-description">
-            A creative home for animation students, alumni,
-            and studios to share artwork, discover talent,
-            and explore new career opportunities.
+          <p style={{ fontSize: "17px", lineHeight: "1.8", maxWidth: "540px" }}>
+            Discover animation portfolios, connect with creative talent, and
+            find your place in the creative industry.
           </p>
 
-          <div className="hero-buttons">
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "28px" }}>
             <button
-              className="home-button primary-button"
-              onClick={() => navigate("artworks")}
+              onClick={() => goTo("artworks")}
+              style={buttonStyle("#ffffff", "#204e39", "#ffffff")}
             >
-              Explore Artworks <span>↗</span>
+              Explore Artworks ↗
             </button>
-
             <button
-              className="home-button secondary-button"
-              onClick={() => navigate("register")}
+              onClick={() => goTo("register")}
+              style={buttonStyle("transparent", "#ffffff", "#b9d0bf")}
             >
-              Create Your Profile
+              Become a Creator
             </button>
           </div>
 
-          <div className="hero-community">
-            <div className="community-avatars">
-              <span>M</span>
-              <span>R</span>
-              <span>N</span>
-              <span>+</span>
-            </div>
-
-            <p>
-              <strong>A community for creative minds</strong>
-              <br />
-              Share your talent with the world.
-            </p>
-          </div>
+          <p style={{ marginTop: "42px", fontSize: "14px", color: "#edf4df" }}>
+            ✳ &nbsp; A creative space for animation students and alumni.
+          </p>
         </div>
 
-        {/* Featured Artwork */}
-        <div className="hero-artwork">
-          <div className="artwork-top">
-            <span>FEATURED CREATOR</span>
-            <span>01 / 04</span>
-          </div>
-
-          <div className="artwork-orbit orbit-one"></div>
-          <div className="artwork-orbit orbit-two"></div>
-
-          <div className="artwork-planet">
-            <div className="planet-ring"></div>
-            <div className="planet-highlight"></div>
-          </div>
-
-          <div className="artwork-label">
-            <div className="creator-avatar">MA</div>
-
-            <div className="creator-information">
-              <strong>Worlds by Mira</strong>
-              <span>Concept Artist · Class of 2026</span>
-            </div>
-
-            <span className="artwork-arrow">↗</span>
-          </div>
-
-          <div className="artwork-side-text">
-            DREAM
-            <br />
-            IN COLOR
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Strip */}
-      <section className="home-features">
-        <div className="feature-item">
-          <span>01</span>
-          <p>Showcase Your Portfolio</p>
-        </div>
-
-        <div className="feature-item">
-          <span>02</span>
-          <p>Connect with Creators</p>
-        </div>
-
-        <div className="feature-item">
-          <span>03</span>
-          <p>Discover Career Paths</p>
-        </div>
-      </section>
-
-      {/* Artwork Section */}
-      <section className="home-section">
-        <div className="home-section-heading">
-          <div>
-            <span className="eyebrow">
-              FRESH FROM THE COMMUNITY
-            </span>
-
-            <h2>
-              Made with imagination<span>.</span>
-            </h2>
-
-            <p>
-              Explore ideas, experiments, and worlds
-              created by our creative community.
-            </p>
-          </div>
-
-          <button
-            className="home-text-link"
-            onClick={() => navigate("artworks")}
+        <div
+          style={{
+            flex: "1 1 300px",
+            maxWidth: "380px",
+            minHeight: "300px",
+            borderRadius: "170px 170px 35px 35px",
+            background: "linear-gradient(145deg, #cbdcb1, #6d966e)",
+            border: "1px solid #b8d0b5",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            boxSizing: "border-box",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "180px",
+              fontWeight: "bold",
+              color: "#f4f5e8",
+              opacity: 0.95,
+            }}
           >
-            View All Artworks ↗
-          </button>
-        </div>
-
-        <div className="home-art-grid">
-
-          <article className="home-art-card">
-            <div className="home-art-image art-lilac">
-              <span className="art-category">CONCEPT ART</span>
-              <div className="art-circle"></div>
-              <div className="art-object object-purple"></div>
-              <span className="art-image-title">A World of Wonder</span>
-            </div>
-
-            <div className="home-art-info">
-              <div>
-                <h3>The Quiet Planet</h3>
-                <p>By Mira Anjani</p>
-              </div>
-              <span className="art-like">♡</span>
-            </div>
-          </article>
-
-          <article className="home-art-card">
-            <div className="home-art-image art-peach">
-              <span className="art-category">CHARACTER DESIGN</span>
-              <div className="art-circle"></div>
-              <div className="art-object object-peach"></div>
-              <span className="art-image-title">Made of Courage</span>
-            </div>
-
-            <div className="home-art-info">
-              <div>
-                <h3>Little Guardian</h3>
-                <p>By Rafi Mahendra</p>
-              </div>
-              <span className="art-like">♡</span>
-            </div>
-          </article>
-
-          <article className="home-art-card">
-            <div className="home-art-image art-blue">
-              <span className="art-category">3D ANIMATION</span>
-              <div className="art-circle"></div>
-              <div className="art-object object-blue"></div>
-              <span className="art-image-title">Find Your Orbit</span>
-            </div>
-
-            <div className="home-art-info">
-              <div>
-                <h3>Beyond the Blue</h3>
-                <p>By Nadia Putri</p>
-              </div>
-              <span className="art-like">♡</span>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      {/* Career Section */}
-      <section className="home-career">
-        <div className="career-content">
-          <span className="eyebrow">
-            YOUR NEXT CHAPTER
+            F
           </span>
 
-          <h2>
-            Good things happen
-            <br />
-            when talent meets opportunity.
-          </h2>
-
-          <p>
-            Find internships, freelance projects, and
-            creative roles made for people like you.
-          </p>
-
-          <button
-            className="home-button primary-button"
-            onClick={() => navigate("jobs")}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "14px",
+              left: "14px",
+              right: "14px",
+              padding: "18px",
+              borderRadius: "14px",
+              background: "#214c37",
+              color: "white",
+              border: "1px solid #78977d",
+            }}
           >
-            Explore Opportunities <span>↗</span>
-          </button>
-        </div>
-
-        <div className="career-art">
-          <div className="career-sun"></div>
-
-          <div className="career-sticker sticker-one">
-            CREATIVITY
-            <br />
-            <strong>IN MOTION</strong>
+            <small style={{ letterSpacing: "2px" }}>CREATIVE SPOTLIGHT</small>
+            <h3 style={{ marginBottom: "0" }}>Ideas become worlds.</h3>
           </div>
 
-          <div className="career-sticker sticker-two">
-            NEW
-            <br />
-            PERSPECTIVES ↗
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "-15px",
+              padding: "18px",
+              borderRadius: "12px",
+              background: "white",
+              color: "#234b37",
+              fontSize: "13px",
+            }}
+          >
+            ✳ &nbsp; Create something meaningful
           </div>
-
-          <span className="career-star">✳</span>
         </div>
       </section>
-
-      {/* Join Section */}
-      <section className="home-join">
-        <span className="eyebrow">
-          YOUR STORY BELONGS HERE
-        </span>
-
-        <h2>
-          Make room for your
-          <br />
-          <span>next big idea.</span>
-        </h2>
-
-        <p>
-          Build your creative identity and let the right
-          people discover your work.
-        </p>
-
-        <button
-          className="home-button primary-button"
-          onClick={() => navigate("register")}
-        >
-          Join Ficusia Hub <span>↗</span>
-        </button>
-      </section>
-
     </div>
   );
+}
+
+function buttonStyle(background, color, borderColor) {
+  return {
+    background,
+    color,
+    border: `1px solid ${borderColor}`,
+    borderRadius: "10px",
+    padding: "15px 21px",
+    fontSize: "14px",
+    fontWeight: "bold",
+    cursor: "pointer",
+  };
 }
