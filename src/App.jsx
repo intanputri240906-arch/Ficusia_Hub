@@ -1,5 +1,13 @@
    import './App.css'
 import { useState } from "react";
+import KelolaProfil from "./pages/kelolaprofil.jsx";
+import KategoriKarya from "./pages/kategorikarya.jsx";
+import ManajemenBadge from "./pages/manajemenbadge.jsx";
+import Logout from "./pages/logout.jsx";
+import LikeKomentar from "./components/LikeKomentar.jsx";
+import AiCheck from "./components/AiCheck.jsx";
+import AiBadge from "./components/AiBadge.jsx";
+import KaryaSaya from "./pages/karyasaya.jsx";
 
 const artworks = [
   {
@@ -126,6 +134,57 @@ function App() {
     setUser(null);
     navigate("home");
   };
+
+  // ===== FITUR JUNI: penyambung ke halaman di src/pages =====
+  const jnRoutes = {
+    home: "home",
+    login: "login",
+    register: "register",
+    profile: "creator-dashboard",
+    upload: "upload",
+    karya: "artworks",
+  };
+  const jnNavigate = (target) => navigate(jnRoutes[target] || target);
+  const jnLogout = () => {
+    setUser(null);
+    setEmail("");
+    setPassword("");
+    setFullName("");
+  };
+  // ===== AKHIR penyambung fitur Juni =====
+
+  // ===== FITUR: deteksi karya AI di upload =====
+  const [uploadFile, setUploadFile] = useState(null);
+  const [uploadAiResult, setUploadAiResult] = useState(null);
+  const [uploadAiDeclared, setUploadAiDeclared] = useState(false);
+  const [postedWorks, setPostedWorks] = useState([]);
+
+  const jnPublishWork = (form) => {
+    if (!uploadFile) return;
+    const title = form.elements["work-title"].value.trim();
+    const category = form.elements["work-category"].value;
+    let previewUrl = null;
+    if (uploadFile.type.startsWith("image/") && typeof URL.createObjectURL === "function") {
+      previewUrl = URL.createObjectURL(uploadFile);
+    }
+    setPostedWorks((prev) => [
+      {
+        id: Date.now(),
+        title: title || "Untitled",
+        category,
+        creator: (user && user.name) || "Creator",
+        previewUrl,
+        aiStatus: uploadAiResult ? uploadAiResult.status : "clean",
+        aiDeclared: uploadAiDeclared,
+      },
+      ...prev,
+    ]);
+    form.reset();
+    setUploadFile(null);
+    setUploadAiResult(null);
+    setUploadAiDeclared(false);
+  };
+  // ===== AKHIR deteksi karya AI =====
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -483,6 +542,44 @@ function App() {
             {filteredArtworks.length === 0 && (
               <p>No artworks found. Try another search or category.</p>
             )}
+
+            {postedWorks.length > 0 && (
+              <div className="jn-community">
+                <span className="eyebrow">NEW FROM THE COMMUNITY</span>
+                <h2>Karya Terbaru</h2>
+                <div className="artwork-grid">
+                  {postedWorks.map((work) => (
+                    <article className="artwork-card" key={work.id}>
+                      {work.previewUrl ? (
+                        <img
+                          className="artwork-visual"
+                          src={work.previewUrl}
+                          alt={work.title}
+                          style={{ objectFit: "cover" }}
+                        />
+                      ) : (
+                        <div
+                          className="artwork-visual"
+                          style={{ background: "#52765b" }}
+                        >
+                          <span>{work.title.charAt(0).toUpperCase()}</span>
+                          <small>{work.category}</small>
+                        </div>
+                      )}
+                      <div className="artwork-info">
+                        <span className="eyebrow">{work.category}</span>
+                        <h3>{work.title}</h3>
+                        <p>By {work.creator}</p>
+                        <AiBadge
+                          status={work.aiStatus}
+                          declared={work.aiDeclared}
+                        />
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
         )}
 
@@ -565,6 +662,13 @@ function App() {
                 >
                   {user ? "Back to Dashboard" : "Sign In to Interact"}
                 </button>
+
+                {/* FITUR JUNI: Like & Komentar (INT-01) */}
+                <LikeKomentar
+                  key={selectedArtwork.id}
+                  user={user}
+                  navigate={jnNavigate}
+                />
               </>
             )}
           </section>
@@ -656,6 +760,12 @@ function App() {
                 </button>
               </form>
 
+              {page === "register" && (
+                <p className="jn-note">
+                  Pendaftaran langsung aktif, tanpa perlu verifikasi admin.
+                </p>
+              )}
+
               <p className="auth-switch">
                 {page === "login"
                   ? "Don't have an account?"
@@ -716,6 +826,67 @@ function App() {
                   View Profile
                 </button>
               </article>
+
+              <article className="dashboard-card">
+                <span className="dashboard-icon">▣</span>
+                <h3>Karya Saya</h3>
+                <p>Lihat karya yang diposting beserta label AI-nya.</p>
+                <button
+                  className="button button-outline"
+                  onClick={() => navigate("my-works")}
+                >
+                  Lihat Karya
+                </button>
+              </article>
+
+              {/* FITUR JUNI: kartu dashboard */}
+              <article className="dashboard-card">
+                <span className="dashboard-icon">✎</span>
+                <h3>Edit Profile</h3>
+                <p>Kelola bio, CV, skill, spesialisasi, dan kontak.</p>
+                <button
+                  className="button button-outline"
+                  onClick={() => navigate("edit-profile")}
+                >
+                  Edit Profile
+                </button>
+              </article>
+
+              <article className="dashboard-card">
+                <span className="dashboard-icon">#</span>
+                <h3>Kategori Karya</h3>
+                <p>Beri kategori pada setiap karya agar mudah dicari.</p>
+                <button
+                  className="button button-outline"
+                  onClick={() => navigate("kategori-karya")}
+                >
+                  Kelola Kategori
+                </button>
+              </article>
+
+              <article className="dashboard-card">
+                <span className="dashboard-icon">❀</span>
+                <h3>Manajemen Badge</h3>
+                <p>Admin mengelola badge Sprout, Sapling, dan Ficus.</p>
+                <button
+                  className="button button-outline"
+                  onClick={() => navigate("manajemen-badge")}
+                >
+                  Kelola Badge
+                </button>
+              </article>
+
+              <article className="dashboard-card">
+                <span className="dashboard-icon">⏻</span>
+                <h3>Logout</h3>
+                <p>Keluar dari sistem dengan aman.</p>
+                <button
+                  className="button button-outline"
+                  onClick={() => navigate("logout-confirm")}
+                >
+                  Logout
+                </button>
+              </article>
             </div>
           </section>
         )}
@@ -732,6 +903,7 @@ function App() {
               className="upload-form"
               onSubmit={(event) => {
                 event.preventDefault();
+                jnPublishWork(event.currentTarget);
                 window.alert(
                   "This is a frontend demo. Artwork storage will be connected later."
                 );
@@ -759,6 +931,18 @@ function App() {
                 id="work-file"
                 type="file"
                 accept="image/*,video/*"
+                onChange={(event) =>
+                  setUploadFile(
+                    (event.target.files && event.target.files[0]) || null
+                  )
+                }
+              />
+
+              <AiCheck
+                file={uploadFile}
+                declared={uploadAiDeclared}
+                onDeclaredChange={setUploadAiDeclared}
+                onResult={setUploadAiResult}
               />
 
               <button className="button button-primary auth-submit">
@@ -767,6 +951,37 @@ function App() {
             </form>
           </section>
         )}
+
+        {/* ===== FITUR JUNI: halaman dari src/pages ===== */}
+        {page === "edit-profile" && (
+          <div className="jn-embedded">
+            <KelolaProfil navigate={jnNavigate} user={user} />
+          </div>
+        )}
+
+        {page === "kategori-karya" && (
+          <div className="jn-embedded">
+            <KategoriKarya navigate={jnNavigate} />
+          </div>
+        )}
+
+        {page === "manajemen-badge" && (
+          <div className="jn-embedded">
+            <ManajemenBadge navigate={jnNavigate} user={user} />
+          </div>
+        )}
+
+        {page === "logout-confirm" && (
+          <div className="jn-embedded">
+            <Logout navigate={jnNavigate} user={user} onLogout={jnLogout} />
+          </div>
+        )}
+        {page === "my-works" && (
+          <div className="jn-embedded">
+            <KaryaSaya works={postedWorks} navigate={jnNavigate} />
+          </div>
+        )}
+        {/* ===== AKHIR halaman fitur Juni ===== */}
       </main>
 
       <footer className="site-footer">

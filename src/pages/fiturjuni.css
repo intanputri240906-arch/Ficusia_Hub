@@ -1,0 +1,474 @@
+/* =================================
+   FITUR JUNI - PROF-01, PORT-02, INT-01, BADGE-01, AUTH-02
+   (semua class berawalan jn- supaya tidak bentrok dengan CSS lain)
+================================= */
+
+.jn-page {
+  min-height: 100vh;
+  color: #20372a;
+  background: #f7f8f3;
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+.jn-page *,
+.jn-page *::before,
+.jn-page *::after {
+  box-sizing: border-box;
+}
+
+.jn-page h1,
+.jn-page h2,
+.jn-page h3,
+.jn-page h4,
+.jn-page p {
+  margin-top: 0;
+}
+
+.jn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-bottom: 1px solid #e3e8df;
+  background: #ffffff;
+}
+
+.jn-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.jn-logo-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 9px;
+  color: #ffffff;
+  background: #285c40;
+}
+
+.jn-back {
+  border: 0;
+  color: #285c40;
+  background: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.jn-container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+.jn-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #788379;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.jn-title {
+  margin-bottom: 8px;
+  font-size: 34px;
+}
+
+.jn-desc {
+  margin-bottom: 28px;
+  color: #788379;
+}
+
+.jn-card {
+  padding: 26px;
+  border: 1px solid #e3e8df;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.jn-card + .jn-card {
+  margin-top: 20px;
+}
+
+.jn-form {
+  display: grid;
+  gap: 8px;
+}
+
+.jn-form label {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.jn-form input,
+.jn-form textarea,
+.jn-form select,
+.jn-select,
+.jn-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e3e8df;
+  border-radius: 10px;
+  color: #20372a;
+  background: #ffffff;
+  font: inherit;
+}
+
+.jn-form input:focus,
+.jn-form textarea:focus,
+.jn-select:focus,
+.jn-input:focus {
+  outline: 2px solid #568767;
+  outline-offset: 2px;
+}
+
+.jn-btn {
+  padding: 12px 20px;
+  border: 1px solid #285c40;
+  border-radius: 10px;
+  color: #ffffff;
+  background: #285c40;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.jn-btn:hover {
+  background: #1d4933;
+}
+
+.jn-btn-outline {
+  color: #285c40;
+  background: #ffffff;
+}
+
+.jn-btn-outline:hover {
+  background: #e7eee4;
+}
+
+.jn-btn-danger {
+  border-color: #b3402f;
+  background: #b3402f;
+}
+
+.jn-btn-danger:hover {
+  background: #8f3022;
+}
+
+.jn-link-btn {
+  border: 0;
+  color: #285c40;
+  background: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.jn-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jn-row-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.jn-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid #e3e8df;
+  border-radius: 30px;
+  color: #285c40;
+  background: #e7eee4;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+button.jn-chip {
+  cursor: pointer;
+}
+
+.jn-chip-active {
+  color: #ffffff;
+  background: #285c40;
+}
+
+.jn-chip-x {
+  border: 0;
+  color: inherit;
+  background: none;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.jn-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 30px;
+  color: #37684a;
+  background: #e7f1e2;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.jn-badge-sapling {
+  color: #8a5a2e;
+  background: #f8edda;
+}
+
+.jn-badge-sprout {
+  color: #4f6f8d;
+  background: #e7eff7;
+}
+
+.jn-muted {
+  color: #788379;
+  font-size: 13px;
+}
+
+.jn-success {
+  margin: 14px 0 0;
+  color: #285c40;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.jn-list {
+  display: grid;
+  gap: 12px;
+}
+
+.jn-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e3e8df;
+  border-radius: 13px;
+  background: #ffffff;
+}
+
+.jn-thumb {
+  display: grid;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.jn-thumb-round {
+  border-radius: 50%;
+}
+
+.jn-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.jn-item-info h3 {
+  margin-bottom: 2px;
+  font-size: 16px;
+}
+
+.jn-item-info p {
+  margin-bottom: 8px;
+  color: #788379;
+  font-size: 13px;
+}
+
+.jn-item select {
+  width: 240px;
+  max-width: 100%;
+}
+
+.jn-detail-art {
+  display: grid;
+  height: 260px;
+  margin-bottom: 20px;
+  place-items: center;
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 80px;
+  font-weight: 800;
+}
+
+.jn-interaction h2 {
+  margin: 26px 0 12px;
+  font-size: 18px;
+}
+
+.jn-comments {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.jn-comment {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #e3e8df;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.jn-comment p {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.jn-legend {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.jn-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jn-legend-row .jn-input {
+  flex: 1;
+}
+
+.jn-center {
+  max-width: 460px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+.jn-center .jn-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .jn-header {
+    padding: 14px 20px;
+  }
+
+  .jn-item {
+    flex-wrap: wrap;
+  }
+
+  .jn-item select {
+    width: 100%;
+  }
+
+  .jn-title {
+    font-size: 28px;
+  }
+}
+
+/* Saat ditampilkan di dalam App (topbar App sudah ada) */
+.jn-embedded .jn-header {
+  display: none;
+}
+
+.jn-embedded .jn-page {
+  min-height: auto;
+  background: transparent;
+}
+
+.jn-embedded .jn-center {
+  margin: 40px auto;
+}
+
+/* ===== Deteksi karya AI ===== */
+.jn-ai-box {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0;
+  padding: 16px;
+  border: 1px dashed #b9c8b6;
+  border-radius: 12px;
+  background: #f4f7f1;
+}
+
+.jn-ai-box p {
+  margin: 0;
+}
+
+.jn-ai-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.jn-ai-clean {
+  color: #37684a;
+  background: #e7f1e2;
+}
+
+.jn-ai-ai {
+  color: #9b2c1f;
+  background: #fbe4e0;
+}
+
+.jn-ai-declared {
+  color: #8a5a2e;
+  background: #f8edda;
+}
+
+.jn-ai-maybe {
+  color: #7a6a1d;
+  background: #f6f0cc;
+}
+
+.jn-ai-reasons {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+}
+
+.jn-ai-declare {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 0 !important;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.jn-ai-declare input {
+  width: auto;
+}
+
+.jn-thumb-img {
+  object-fit: cover;
+}
+
+.jn-note {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #285c40;
+  background: #e7eee4;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.jn-community {
+  margin-top: 40px;
+}
